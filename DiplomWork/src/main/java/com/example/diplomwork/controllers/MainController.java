@@ -105,6 +105,12 @@ public class MainController {
         model.addAttribute("value_search", search);
         model.addAttribute("value_price_ot", ot);
         model.addAttribute("value_price_do", Do);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication.isAuthenticated()){
+            PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+            model.addAttribute("personName",personDetails.getPerson().getNameUser());
+            return "/user/index";
+        }
         return "/product/product";
     }
     @GetMapping("/cart/add/{id}")

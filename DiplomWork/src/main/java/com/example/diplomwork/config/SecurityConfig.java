@@ -23,7 +23,7 @@ public class SecurityConfig {
                 http
                 .authorizeHttpRequests() //все страницы защищены аутентификацией
                 .requestMatchers("/admin").hasRole("ADMIN")//список страниц доступные админу
-                .requestMatchers("/authentication","/registration","/error","/resources/**","/static/**","/css/**","/js/**","/img/**", "/product","/product/info/{id}", "/product/search").permitAll()
+                .requestMatchers("/authentication","/registration","/error","/resources/**","/static/**","/css/**","/js/**","/img/**", "/product","/product/info/{id}", "/product/search","/person_account","/user").permitAll()
                 .anyRequest().hasAnyRole("USER","ADMIN") // остальные страницы достиупны всем ролям
                 .and() //соединитель
 //                .formLogin().loginPage("/authentication") //перенаправление при заходе на защищеные страницы
