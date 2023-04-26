@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление товара в корзину</title>
+</head>
+<body>
+<h3>Добавление товара в корзину</h3>
+<form th:method="POST" th:action="@{/product/add/in/cart}" th:object="${cart}">
+    <label for="name">Введите наименование: </label>
+    <input type="text" th:field="*{name}" id="name">
+    <label for="price">Введите цену: </label>
+    <input type="number" th:field="*{price}" id="price" step="0.01">
+    <label for="quantity">Введите количество: </label>
+    <input type="number" th:field="*{quantity}" id="quantity" min="1">
+    <button type="submit">Добавить в корзину</button>
+</form>
+</body>
+</html>

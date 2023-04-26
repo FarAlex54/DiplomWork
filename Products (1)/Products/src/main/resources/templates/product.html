@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список товаров</title>
+</head>
+<style>
+    body{
+        background-color: rgb(100, 100, 100);
+        display: grid;
+        grid-template-columns: 30% 1fr 30%;
+        grid-template-rows: 0.5fr 50px;
+        gap: 5px;
+        grid-template-areas:
+				"out_left form_area out_right"
+				"out_left calc out_right";
+    }
+    .form_area {
+        grid-area: form_area;
+        height: 440px;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .calc {
+        grid-area: calc;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .fieldset{
+        height: 420px;
+        padding: 5px 5px 5px 5px;
+    }
+    input[type=text],[type=radio]{
+        background-color: white;
+        float:right;
+        text-align: right;
+    }
+    input::-webkit-inner-spin-button {display: none;}
+    legend{
+        text-align: center;
+    }
+</style>
+<body>
+<form_area class="form_area"><fieldset class="fieldset"><legend>Товары</legend>
+            <div th:each="product : ${product}">
+                <a th:href="@{/product/{id}(id=${product.getId()})}" th:text="${product.getName()}"></a>
+            </div>
+            <div style="width:30%; position: absolute; top:70%; left: 65%;"><fieldset><legend>Сортировка</legend>
+                <Label for="filter1">магазины</Label><input type="radio" id="filter1" name="choice" value=1><br>
+                <Label for="filter2">цена возрастание</Label><input type="radio" id="filter2" name="choice" value=2><br>
+                <Label for="filter3">в алфавитном порядке</Label><input type="radio" id="filter3" name="choice" value=3><br>
+                </fieldset>
+            </div>
+</fieldset>
+</form_area>
+<calc class="calc"><fieldset>
+    <form action="/product/add"><input type="submit" value="Добавить товар"></form>
+</fieldset>
+</calc>
+</body>
+</html>

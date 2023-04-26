@@ -1,0 +1,36 @@
+body{
+    background-color: rgb(100, 100, 100);
+    display: grid;
+    grid-template-columns: 30% 1fr 30%;
+    grid-template-rows: 0.5fr 50px;
+    gap: 5px;
+    grid-template-areas:
+				"out_left form_area out_right"
+				"out_left calc out_right";
+}
+.form_area {
+    grid-area: form_area;
+    height: 440px;
+    background-color: darkgrey;
+    position:relative;
+    padding: 5px 5px 5px 5px;
+}
+.calc {
+    grid-area: calc;
+    background-color: darkgrey;
+    position:relative;
+    padding: 5px 5px 5px 5px;
+}
+.fieldset{
+    height: 420px;
+    padding: 5px 5px 5px 5px;
+}
+input[type=text]{
+    background-color: white;
+    float:right;
+    text-align: right;
+}
+input::-webkit-inner-spin-button {display: none;}
+legend{
+    text-align: center;
+}

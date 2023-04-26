@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+    <link th:href="@{/css/index.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h3>Cписок пользователей</h3>
+<div th:each="user : ${user}">
+    <a th:href="@{/user/{id}(id=${user.getId()})}" th:text="${user.getLastName()}  + ' '+ ${user.getFirstName()} + ' ' +  ${user.getPatronymic()}"></a>
+</div>
+<hr>
+<a href="/user/add">Добавление пользователя</a>
+<script th:src="@{/js/index.js}"></script>
+</body>
+</html>

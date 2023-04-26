@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о пользователе</title>
+</head>
+<style>
+    body{
+        background-color: rgb(100, 100, 100);
+        display: grid;
+        grid-template-columns: 30% 1fr 30%;
+        grid-template-rows: 0.5fr 50px;
+        gap: 5px;
+        grid-template-areas:
+				"out_left form_area out_right"
+				"out_left calc out_right";
+    }
+    .form_area {
+        grid-area: form_area;
+        height: 440px;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .calc {
+        grid-area: calc;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .fieldset{
+        height: 420px;
+        padding: 5px 5px 5px 5px;
+    }
+    input[type=text]{
+        background-color: white;
+        float:right;
+        text-align: right;
+    }
+    input::-webkit-inner-spin-button {display: none;}
+    legend{
+        text-align: center;
+    }
+</style>
+<body>
+<form_area class="form_area">
+    <fieldset class="fieldset">
+        <legend>Информация о пользователе</legend>
+            <p th:text="'Пользователь № ' + ${user.getId()}"></p>
+            <p th:text="'Фамилия: ' + ${user.getLast_name()}"></p>
+            <p th:text="'Имя: ' + ${user.getFirst_name()}"></p>
+            <p th:text="'Отчество: ' + ${user.getSecond_name()}"></p>
+            <p th:text="'Возраст: ' + ${user.getAge()}"></p>
+            <p th:text="'Телефон: ' + ${user.getPhone()}"></p>
+            <p th:text="'E-mail: ' + ${user.getEmail()}"></p>
+        </form>
+    </fieldset>
+</form_area>
+<calc class="calc">
+    <fieldset>
+       <form style="float:left" th:method="GET" th:action="@{/user/edit/{id}(id=${user.getId()})}" th:object="${user}">
+            <input type="submit" value="Редактировать">
+       </form>
+        <form style="float:right" th:method="GET" th:action="@{/user/delete/{id}(id=${user.getId()})}" th:object="${user}">
+            <input type="submit" value="Удалить">
+        </form>
+    </fieldset>
+</calc>
+</body>
+</html>

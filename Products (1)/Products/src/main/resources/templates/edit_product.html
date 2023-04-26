@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование товара</title>
+</head>
+<style>
+    body{
+        background-color: rgb(100, 100, 100);
+        display: grid;
+        grid-template-columns: 30% 1fr 30%;
+        grid-template-rows: 0.5fr 50px;
+        gap: 5px;
+        grid-template-areas:
+				"out_left form_area out_right"
+				"out_left calc out_right";
+    }
+    .form_area {
+        grid-area: form_area;
+        height: 440px;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .calc {
+        grid-area: calc;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .fieldset{
+        height: 420px;
+        padding: 5px 5px 5px 5px;
+    }
+    input[type=text],[type=number],select{
+        background-color: white;
+        float:right;
+        text-align: right;
+    }
+    input::-webkit-inner-spin-button {display: none;}
+    legend{
+        text-align: center;
+    }
+</style>
+<body>
+<form_area class="form_area">
+    <fieldset class="fieldset">
+        <legend>Редактирование товара</legend>
+            <form th:method="POST" th:action="@{/product/edit/{id}(id=${edit_product.getId()})}" th:object="${edit_product}" id="myform">
+                <label for="name">Введите наименование товара: </label>
+                <input type="text" th:field="*{name}" id="name">
+                <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                <br><br>
+                <label for="price">Введите цену товара: </label>
+                <input type="number" th:field="*{price}" id="price">
+                <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+                <br><br>
+                <label for="weight">Введите вес товара, грамм: </label>
+                <input type="number" th:field="*{weight}" id="weight">
+                <div style="color: red" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></div>
+                <br><br>
+                <label for="provider">Выберите поставщика: </label>
+                <select id="provider" th:field="*{provider}">
+                    <option th:each="enum : ${T(com.example.products.enumm.Provider).values()}"
+                            th:text="${enum.getDisplayValue()}"
+                            th:value = "${enum}">
+                    </option>
+                </select><br><br>
+                <label for="phoneRespons">Укажите телефон грузчика: </label>
+                <input type="text" th:field="*{phoneRespons}" id="phoneRespons">
+                <div style="color: red" th:if="${#fields.hasErrors('phoneRespons')}" th:errors="*{phoneRespons}"></div>
+                <br><br>
+                <label for="emailRespons">Укажите e-mail поставщика для формирования заявок: </label>
+                <input type="text" th:field="*{emailRespons}" id="emailRespons">
+                <div style="color: red" th:if="${#fields.hasErrors('emailRespons')}" th:errors="*{emailRespons}"></div>
+                <br><br>
+            </form>
+    </fieldset>
+</form_area>
+<calc class="calc">
+    <fieldset>
+        <input type="submit" form="myform" value="Сохранить">
+    </fieldset>
+</calc>
+</body>
+</html>

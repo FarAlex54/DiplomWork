@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление пользователя</title>
+</head>
+<style>
+    body{
+        background-color: rgb(100, 100, 100);
+        display: grid;
+        grid-template-columns: 30% 1fr 30%;
+        grid-template-rows: 0.5fr 50px;
+        gap: 5px;
+        grid-template-areas:
+				"out_left form_area out_right"
+				"out_left calc out_right";
+    }
+    .form_area {
+        grid-area: form_area;
+        height: 440px;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .calc {
+        grid-area: calc;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .fieldset{
+        height: 420px;
+        padding: 5px 5px 5px 5px;
+    }
+    input[type=text],[type=number]{
+        background-color: white;
+        float:right;
+        text-align: right;
+    }
+    input::-webkit-inner-spin-button {display: none;}
+    legend{
+        text-align: center;
+    }
+</style>
+<body>
+  <form_area class="form_area">
+    <fieldset class="fieldset">
+      <legend>Добавление пользователя</legend>
+       <form th:method="POST" th:action="@{/user/add}" th:object="${user}" id="myform">
+          <label for="last_name">Фамилия: </label>
+          <input type="text" th:field="*{last_name}" id="last_name"><br><br>
+          <label for="first_name">Имя: </label>
+          <input type="text" th:field="*{first_name}" id="first_name"><br><br>
+          <label for="second_name">Отчество: </label>
+          <input type="text" th:field="*{second_name}" id="second_name"><br><br>
+          <label for="age">Возраст: </label>
+          <input type="number" th:field="*{age}" id="age"><br><br>
+          <label for="phone">Телефон: </label>
+          <input type="text" th:field="*{phone}" id="phone"><br><br>
+          <label for="email">Электронная почта: </label>
+          <input type="text" th:field="*{email}" id="email"><br><br>
+       </form>
+    </fieldset>
+  </form_area>
+  <calc class="calc">
+    <fieldset>
+      <input type="submit" form="myform" value="Добавить">
+    </fieldset>
+  </calc>
+</body>
+</html>

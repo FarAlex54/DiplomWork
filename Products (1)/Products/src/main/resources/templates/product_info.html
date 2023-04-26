@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о продукте</title>
+</head>
+<style>
+    body{
+        background-color: rgb(100, 100, 100);
+        display: grid;
+        grid-template-columns: 30% 1fr 30%;
+        grid-template-rows: 0.5fr 50px;
+        gap: 5px;
+        grid-template-areas:
+				"out_left form_area out_right"
+				"out_left calc out_right";
+    }
+    .form_area {
+        grid-area: form_area;
+        height: 440px;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .calc {
+        grid-area: calc;
+        background-color: darkgrey;
+        position:relative;
+        padding: 5px 5px 5px 5px;
+    }
+    .fieldset{
+        height: 420px;
+        padding: 5px 5px 5px 5px;
+    }
+    input[type=text]{
+        background-color: white;
+        float:right;
+        text-align: right;
+    }
+    input::-webkit-inner-spin-button {display: none;}
+    legend{
+        text-align: center;
+    }
+</style>
+<body>
+<form_area class="form_area">
+    <fieldset class="fieldset">
+        <legend>Информация о товаре</legend>
+            <p th:text="'Товар № ' + ${product.getId()}"></p>
+            <p th:text="'Наименование: ' + ${product.getName()}"></p>
+            <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+            <p th:text="'Вес: ' + ${product.getWeight()}"></p>
+            <p th:text="'Поставщик: ' + ${(product.getProvider())}"></p>
+            <p th:text="'Телефон грузчика: ' + ${(product.getPhoneRespons())}"></p>
+            <p th:text="'E-mail для заявок по поставке товара: ' + ${(product.getEmailRespons())}"></p>
+        </form>
+    </fieldset>
+</form_area>
+<calc class="calc">
+    <fieldset>
+        <form style="float:left" th:method="GET" th:action="@{/product/edit/{id}(id=${product.getId()})}" th:object="${product}">
+            <input type="submit" value="Редактировать">
+        </form>
+        <form style="float:right" th:method="GET" th:action="@{/product/delete/{id}(id=${product.getId()})}" th:object="${product}">
+            <input type="submit" value="Удалить">
+        </form>
+    </fieldset>
+</calc>
+</body>
+</html>

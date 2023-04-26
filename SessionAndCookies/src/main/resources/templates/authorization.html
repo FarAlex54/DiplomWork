@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в личный кабинет</title>
+</head>
+<body>
+<h3>Вход</h3>
+<form th:method="Post" th:action="@{/authorization}" th:object="${authorization}">
+  <label for="login">Введите логин:</label>
+  <input type="text" th:field="*{login}" id="login"> </input>
+  <label for="password">Введите пароль:</label>
+  <input type="password" th:field="*{password}" id="password"> </input>
+  <button type="submit">Войти</button>
+</form>
+
+</body>
+</html>
