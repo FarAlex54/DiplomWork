@@ -30,14 +30,6 @@
         <div class="cardGrid">
                 <div th:each="order : ${orders}">
                     <div class="card text-dark bg-light mb-3" style="width: 15rem;">
-        <!--                <h4 th:text="'Заказ №:' + ${order.getNumber()}"></h4>-->
-        <!--                <img th:src="'/img/' + ${order.getProduct().getImageList()[0].getFilename()}" width="50px">-->
-        <!--                <p th:text="'Наименование:' + ${order.getProduct().getTitle()}"></p>-->
-        <!--                <p th:text="'Количество:' + ${order.getCount()}"></p>-->
-        <!--                <p th:text="'Цена:' + ${order.getPrice()}"></p>-->
-        <!--                <p th:text="'Дата заказа:' + ${#temporals.format(order.getDateTime(),'dd-MM-yyyy')}"></p>-->
-        <!--                <p th:text="'Статус:' + ${order.getStatus()}"></p>-->
-
                         <div class="card-body">
                             <p class="text-center" style="font-size: 10pt;" th:text="'Заказ №:' + ${order.getNumber()}"></p>
                         </div>
