@@ -63,7 +63,7 @@ public class MainController {
             return "registration";
         }
         personService.register(person);
-        return "redirect:/person_account";
+        return "/authentication";
     }
     @GetMapping("/person_account/product/info/{id}")
     public String infoProduct(@PathVariable("id") int id, Model model){
