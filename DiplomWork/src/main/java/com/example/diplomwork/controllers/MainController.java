@@ -43,10 +43,12 @@ public class MainController {
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         String role = personDetails.getPerson().getRole();
         String nameUser = personDetails.getPerson().getNameUser();
+        System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd  ВЫШЛИ ИЗ ИНФО КАРТОЧКИ ПОД АККАУНТОМ DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
         if(role.equals("ROLE_ADMIN")){
             return "redirect:/admin";
         }
         model.addAttribute("personName", nameUser);
+        System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd  ВЫШЛИ ИЗ ИНФО КАРТОЧКИ ПОД АККАУНТОМ DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
         model.addAttribute("products", productService.getAllProduct());
         return "/user/index";
     }
@@ -65,6 +67,7 @@ public class MainController {
     }
     @GetMapping("/person_account/product/info/{id}")
     public String infoProduct(@PathVariable("id") int id, Model model){
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  ВЫШЛИ ИЗ ИНФО КАРТОЧКИ ПОД АККАУНТОМ DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
         model.addAttribute("product", productService.getProductId(id));
         return "/user/infoProduct";
     }

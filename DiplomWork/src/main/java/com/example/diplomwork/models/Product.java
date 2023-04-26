@@ -138,4 +138,14 @@ public class Product {
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + title + '\'' +
+                ", price='" + price + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
