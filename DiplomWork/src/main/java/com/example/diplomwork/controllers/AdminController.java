@@ -21,10 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-
+//dsad
 @Controller
 public class AdminController {
-
+//
     private final ProductService productService;
     private final PersonService personService;
     private final OrderService orderService;
